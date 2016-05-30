@@ -8,11 +8,11 @@
 
 class Buffer {
 private:
-    std::queue<int> buffer;
+    std::queue<std::string> buffer;
     const unsigned int size;
 	Semaphore sem;
 public:
 	Buffer() : size(BUFFER_SIZE), sem(BUFFER_SIZE) {}
-    void add(int);
-    int remove();
+    void add(std::string &);
+    std::string remove();
 };

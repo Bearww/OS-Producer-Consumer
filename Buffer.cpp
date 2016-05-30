@@ -1,18 +1,18 @@
 #include "Buffer.h"
 
-void Buffer::add(int num) {
+void Buffer::add(std::string &item) {
 	while (true) {
 		sem.wait(PRODUCE);
-        buffer.push(num);
+        buffer.push(item);
         sem.notify();
         return;
     }
 }
 
-int Buffer::remove() {
+std::string Buffer::remove() {
     while (true) {
 		sem.wait(CONSUME);
-        int item = buffer.front();
+        std::string item = buffer.front();
         buffer.pop();
 		sem.notify();
         return item;
